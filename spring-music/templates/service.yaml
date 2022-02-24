@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+ name: spring-music
+ {{- include "spring.labels" . }}
+spec:
+ type:  {{ .Values.database_prod.serviceType }}
+ ports:
+  - name: http
+    protocol: TCP
+    port:  {{ .Values.database_prod.port }} 
+    targetPort:  {{ .Values.database_prod.tport }}
+    {{- include "spring.labels" . | nindent 0 }}
+
